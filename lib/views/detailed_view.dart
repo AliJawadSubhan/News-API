@@ -10,20 +10,34 @@ class DetaildNews extends StatefulWidget {
 class _DetaildNewsState extends State<DetaildNews> {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Column(
-        children: [
-          Expanded(
-            child: Container(
-              color: Colors.red,
+      backgroundColor: Colors.orangeAccent,
+      body: SafeArea(
+        child: Stack(
+          children: [
+            SizedBox(
+              // flex: 1,
+              height: 300,
+              child: Container(
+                color: Colors.red,
+              ),
             ),
-          ),
-          Expanded(
-            child: Container(
-              color: Colors.orange,
+            Padding(
+              padding: const EdgeInsets.only(top: 280.0),
+              child: Container(
+                height: size.height,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                  ),
+                ),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

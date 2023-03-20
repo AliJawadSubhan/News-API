@@ -24,8 +24,8 @@ class NewsItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: 150,
-              width: 150,
+              height: 120,
+              width: 120,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15.0),
                   image: DecorationImage(
@@ -65,7 +65,7 @@ class NewsItem extends StatelessWidget {
                   ),
                   const SizedBox(height: 8.0),
                   Text(
-                    'by $author',
+                    author,
                     style: const TextStyle(
                       fontSize: 16.0,
                       color: Colors.grey,
