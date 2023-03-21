@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:news_api/components/constants.dart';
 
 class DetaildNews extends StatefulWidget {
-  const DetaildNews({super.key, required this.imageSrc, required this.author, required this.desc, required this.content});
+  const DetaildNews(
+      {super.key,
+      required this.imageSrc,
+      required this.author,
+      required this.desc,
+      required this.content});
   final String imageSrc;
   final String author;
   final String desc;
@@ -61,7 +66,9 @@ class _DetaildNewsState extends State<DetaildNews> {
                         ),
                         Column(
                           children: [
-                            SizedBox(height: 12,),
+                            const SizedBox(
+                              height: 12,
+                            ),
                             Text(
                               widget.author,
                               style: newsStyle.copyWith(
@@ -73,19 +80,29 @@ class _DetaildNewsState extends State<DetaildNews> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 40,),
-                    Text(widget.desc),
-                    const SizedBox(height: 40,),
-                    Text(widget.content),
-                    const SizedBox(height: 50,),
-
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    Text(
+                      widget.desc,
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    Text(
+                      widget.content,
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                    const SizedBox(
+                      height: 50,
+                    ),
                     Container(
                       width: 120.0,
                       height: 2.0,
                       color: Colors.orange,
                     ),
                   ],
-
                 ),
               ),
             ),

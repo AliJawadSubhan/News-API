@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:news_api/views/detailed_view.dart';
 
 class NewsItem extends StatelessWidget {
   const NewsItem({
@@ -7,24 +6,20 @@ class NewsItem extends StatelessWidget {
     required this.image,
     required this.headline,
     required this.author,
+    required this.ontap,
   }) : super(key: key);
 
   final String image;
   final String headline;
   final String author;
+  final VoidCallback ontap;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 24.0),
       child: GestureDetector(
-        // onTap: () {
-        //   Navigator.of(context).push(
-        //     MaterialPageRoute(
-        //       builder: (context) =>  DetaildNews(imageSrc: image,),
-        //     ),
-        //   );
-        // },
+        onTap: ontap,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

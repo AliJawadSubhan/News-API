@@ -1,11 +1,11 @@
-class TopHeadline {
+class NewsHeadlines {
   String? status;
   int? totalResults;
   List<Articles>? articles;
 
-  TopHeadline({this.status, this.totalResults, this.articles});
+  NewsHeadlines({this.status, this.totalResults, this.articles});
 
-  TopHeadline.fromJson(Map<String, dynamic> json) {
+  NewsHeadlines.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     totalResults = json['totalResults'];
     if (json['articles'] != null) {

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:news_api/views/detailed_view.dart';
 
 class TopHeadlines extends StatelessWidget {
-  const TopHeadlines({Key? key, required this.image, required this.headlines, required this.name, required this.ontap})
+  const TopHeadlines(
+      {Key? key,
+      required this.image,
+      required this.headlines,
+      required this.name,
+      required this.ontap})
       : super(key: key);
   final String image;
   final String headlines;
@@ -47,7 +51,7 @@ class TopHeadlines extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10.0, vertical: 0),
                   child: Text(
-                    "$name",
+                    name,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style:

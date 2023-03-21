@@ -1,8 +1,6 @@
 import 'dart:async';
-
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:news_api/components/constants.dart';
 import 'package:news_api/views/home_view.dart';
 
@@ -17,21 +15,20 @@ class _SplashScreenState extends State<SplashScreen> {
   bool timerFinished = false;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    Timer(Duration(seconds: 3), () {
+    Timer(const Duration(seconds: 3), () {
       setState(() {
         timerFinished = true;
       });
 
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) =>  HomeView(),
-          ),
-        );
-
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => const HomeView(),
+        ),
+      );
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +43,9 @@ class _SplashScreenState extends State<SplashScreen> {
               height: 100,
               width: 100,
             ),
-            const SizedBox(height: 5,),
+            const SizedBox(
+              height: 5,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -68,7 +67,6 @@ class _SplashScreenState extends State<SplashScreen> {
                     isRepeatingAnimation: true,
                   ),
                 ),
-
               ],
             ),
             const SizedBox(height: 30.0),
@@ -81,8 +79,8 @@ class _SplashScreenState extends State<SplashScreen> {
             timerFinished
                 ? const SizedBox()
                 : const CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-            ),
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                  ),
           ],
         ),
       ),
