@@ -3,9 +3,15 @@ import 'package:news_api/components/constants.dart';
 import 'package:news_api/components/widgets/heading_text.dart';
 import 'package:news_api/components/widgets/news_headline.dart';
 import 'package:news_api/components/widgets/top_headlines.dart';
+import 'package:news_api/controllers/top_headlines_controller.dart';
+import 'package:news_api/views/detailed_view.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({Key? key}) : super(key: key);
+  HomeView({Key? key}) : super(key: key);
+
+  TopHeadlineController topHeadlineController = TopHeadlineController();
+
+  final List allNews  = [];
 
   @override
   Widget build(BuildContext context) {
@@ -49,15 +55,56 @@ class HomeView extends StatelessWidget {
                   ),
                   SizedBox(
                     height: 250,
-                    child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 4,
-                        itemBuilder: (ctx, idx) {
-                          return const TopHeadlines(
-                            image:
-                                'https://media.giphy.com/media/VX2Btre6lxmwGBABZ0/giphy.gif',
-                            headlines:
-                                'NBA Superstar, Indiana Jones is crying in her car with no clue',
+                    child: FutureBuilder(
+                        future: topHeadlineController.fetchingApi(),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const [
+                                CircularProgressIndicator(
+                                  color: Colors.black,
+                                ),
+                              ],
+                            );
+                          } else if (snapshot.connectionState ==
+                              ConnectionState.done) {
+                            return ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: snapshot.data.articles.length,
+                              itemBuilder: (ctx, idx) {
+                                return TopHeadlines(
+                                  ontap: () {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) => DetaildNews(
+                                          imageSrc: snapshot
+                                              .data.articles![idx].urlToImage,
+                                          author: snapshot
+                                              .data.articles![idx].source.name,
+                                          desc: snapshot
+                                              .data.articles![idx].description,
+                                        content: snapshot.data.articles![idx].content,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  name:
+                                      snapshot.data.articles![idx].source.name,
+                                  image: snapshot
+                                          .data.articles![idx].urlToImage ??
+                                      'https://www.videogameschronicle.com/files/2021/06/xbox-cloud-gaming-d.jpg',
+                                  headlines: snapshot.data.articles![idx].title,
+                                );
+                              },
+                            );
+                          }
+                          return Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Text('I Think the Api or your internet is shi'),
+                            ],
                           );
                         }),
                   ),
@@ -78,9 +125,9 @@ class HomeView extends StatelessWidget {
                   const SizedBox(
                     height: 25,
                   ),
-                  ...List.generate(
-                    5,
-                    (index) {
+                  ...allNews.map(
+
+                    (item) {
                       // [index] is the position in the generated list (from 0 up to 4 in this case)
                       return const NewsItem(
                         image:
@@ -89,7 +136,7 @@ class HomeView extends StatelessWidget {
                         author: 'Jack Williams',
                       );
                     },
-                  ),
+                  ).toList(),
                 ],
               ),
             ),

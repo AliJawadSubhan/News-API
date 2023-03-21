@@ -9,12 +9,7 @@ class NewsWave extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const SplashScreen(),
-        '/home_view': (context) => const HomeView(),
-        '/detail_view': (context) => const DetaildNews(),
-      },
+      home: SplashScreen(),
     );
   }
 }
